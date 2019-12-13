@@ -1,0 +1,29 @@
+{
+  "name": "tagalys/tagalys-magento2-frontend",
+  "description": "Integrates Tagalys Search API",
+  "type": "magento2-module",
+  "version": "2.0.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "repositories": [{
+    "type": "vcs",
+    "url": "https://github.com/tagalys/tagalys-magento2-frontend"
+  }],
+  "require": {
+    "tagalys/tagalys-magento2": "2.0.*"
+  },
+  "authors": [{
+    "name": "Palaniappan Chellappan",
+    "email": "pc@tagalys.com",
+    "homepage": "https://www.tagalys.com/",
+    "role": "Developer"
+  }],
+  "autoload": {
+    "files": ["registration.php"],
+    "psr-4": {
+      "Tagalys\\Frontend\\": ""
+    }
+  }
+}
