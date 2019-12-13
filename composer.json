@@ -14,12 +14,14 @@
   "require": {
     "tagalys/tagalys-magento2": "2.0.*"
   },
-  "authors": [{
-    "name": "Palaniappan Chellappan",
-    "email": "pc@tagalys.com",
-    "homepage": "https://www.tagalys.com/",
-    "role": "Developer"
-  }],
+  "authors": [
+    {
+      "name": "Tagalys Team",
+      "email": "dev@tagalys.com",
+      "homepage": "https://www.tagalys.com/",
+      "role": "Developer"
+    }
+  ],
   "autoload": {
     "files": ["registration.php"],
     "psr-4": {
