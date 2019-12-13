@@ -2,7 +2,7 @@
     <body>
         <referenceBlock name="page.main.title" remove="true" />
         <referenceContainer name="content">
-            <block class="Tagalys\Search\Block\Tsearch" name="tsearch" template="tsearch.phtml" />
+            <block class="Tagalys\Frontend\Block\Tsearch" name="tsearch" template="tsearch.phtml" />
         </referenceContainer>
     </body>
 </page>

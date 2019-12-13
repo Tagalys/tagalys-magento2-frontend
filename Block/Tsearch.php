@@ -1,5 +1,5 @@
 <?php
-namespace Tagalys\Search\Block;
+namespace Tagalys\Frontend\Block;
  
 class Tsearch extends \Magento\Framework\View\Element\Template
 {

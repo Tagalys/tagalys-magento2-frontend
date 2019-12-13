@@ -1,6 +1,6 @@
 <?php
  
-namespace Tagalys\Search\Controller\Index;
+namespace Tagalys\Frontend\Controller\Index;
  
 use Magento\Framework\App\Action\Context;
  

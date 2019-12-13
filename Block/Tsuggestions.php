@@ -1,5 +1,5 @@
 <?php
-namespace Tagalys\Search\Block;
+namespace Tagalys\Frontend\Block;
  
 class Tsuggestions extends \Magento\Framework\View\Element\Template
 {
