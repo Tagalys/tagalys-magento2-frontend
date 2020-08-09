@@ -1,6 +1,6 @@
 <?php
 namespace Tagalys\Frontend\Block;
- 
+
 class Tsuggestions extends \Magento\Framework\View\Element\Template
 {
     public function __construct(
@@ -11,6 +11,10 @@ class Tsuggestions extends \Magento\Framework\View\Element\Template
         $this->tagalysConfiguration = $tagalysConfiguration;
         $this->storeManager = $context->getStoreManager();
         parent::__construct($context);
+    }
+
+    public function tSearchEnabled() {
+        return $this->tagalysConfiguration->isTSearchEnabled($this->getCurrentStoreId());
     }
 
     public function isTagalysEnabled($module = false) {

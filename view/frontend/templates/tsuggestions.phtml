@@ -1,10 +1,10 @@
-<?php if ($this->isTagalysEnabled('search')): ?>
+<?php if ($this->tSearchEnabled()): ?>
     <?php
         $currency = $this->getCurrentCurrency();
         $apiCredentials = $this->apiCredentials();
     ?>
     <script>
-        require(['jquery', 'jquery/ui'], function(jQuery){ 
+        require(['jquery', 'jquery/ui'], function(jQuery){
             try {
                 jQuery(document).on('tagalys:ready', function() {
                     jQuery.fn.tagalys_search_suggestions.search_link = function( q, qf, qin ) {
@@ -12,8 +12,8 @@
                         if (typeof(qf) == 'undefined' || jQuery.isEmptyObject(qf)) {
                             return (tagalys_search_base_url + encodeURIComponent(q));
                         } else {
-                            str = Object.keys(qf).map(function(key){ 
-                                return  encodeURIComponent(key) + "-"+ encodeURIComponent(qf[key]); 
+                            str = Object.keys(qf).map(function(key){
+                                return  encodeURIComponent(key) + "-"+ encodeURIComponent(qf[key]);
                             }).join('~');
                             qf_param = encodeURIComponent("qf") + '=' + str;
 
@@ -46,7 +46,7 @@
                 });
             }
             catch(err) {
-                
+
             }
         });
     </script>
