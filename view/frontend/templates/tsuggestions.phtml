@@ -2,8 +2,13 @@
     <?php
         $currency = $this->getCurrentCurrency();
         $apiCredentials = $this->apiCredentials();
+        $isTagalysHealthy = $this->tagalysConfiguration->isTagalysHealthy();
     ?>
     <script>
+        __tagalysHealthy = ("<?php echo $isTagalysHealthy ?>" === "true");
+        if(__tagalysHealthy) {
+            document.getElementsByTagName('body')[0].classList.add('tagalys-enabled');
+        }
         require(['jquery', 'jquery/ui'], function(jQuery){
             try {
                 jQuery(document).on('tagalys:ready', function() {
