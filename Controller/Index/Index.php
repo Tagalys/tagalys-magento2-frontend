@@ -41,11 +41,13 @@ class Index extends \Magento\Framework\App\Action\Action
         $params = $this->request->getParams();
 
         if(!array_key_exists('q', $params)) {
-            $searchFallbackUrl = $this->tagalysConfiguration->getConfig('search:fallback_url');
+            $store = $this->storeManager->getStore();
+            $storeId = $store->getId();
+            $searchFallbackUrl = $this->tagalysConfiguration->getConfig("search:fallback_url_store_$storeId");
             if($searchFallbackUrl == null) {
-                $searchFallbackUrl = $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB, true);
+                $searchFallbackUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB, true);
             }
-            $this->_redirect($searchFallbackUrl);
+            return $this->_redirect($searchFallbackUrl);
         }
         $resultPage->getConfig()->getTitle()->set('Search Results for "' . $params['q'] . '"');
 
