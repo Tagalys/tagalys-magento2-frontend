@@ -14,7 +14,9 @@ class Tsuggestions extends \Magento\Framework\View\Element\Template
     }
 
     public function tSearchEnabled() {
-        return $this->tagalysConfiguration->isTSearchEnabled($this->getCurrentStoreId());
+        $isTagalysHealthy = $this->tagalysConfiguration->isTagalysHealthy();
+        $searchEnabled = $this->tagalysConfiguration->isTSearchEnabled($this->getCurrentStoreId());
+        return ($isTagalysHealthy && $searchEnabled);
     }
 
     public function isTagalysEnabled($module = false) {
