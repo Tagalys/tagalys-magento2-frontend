@@ -2,7 +2,7 @@
   "name": "tagalys/tagalys-magento2-frontend",
   "description": "Integrates Tagalys Search API",
   "type": "magento2-module",
-  "version": "2.3.0",
+  "version": "2.4.0-beta",
   "license": [
     "OSL-3.0",
     "AFL-3.0"
@@ -12,7 +12,7 @@
     "url": "https://github.com/tagalys/tagalys-magento2-frontend"
   }],
   "require": {
-    "tagalys/tagalys-magento2": "2.3.*"
+    "tagalys/tagalys-magento2": "^2.3"
   },
   "authors": [
     {
