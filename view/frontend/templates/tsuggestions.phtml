@@ -4,6 +4,9 @@
 
         onTagalysReady(function () {
             var selector = "<?php echo $this->getTagalysConfig('search_box_selector') ?>";
+            var searchInputNode = document.querySelector(selector);
+            if(!searchInputNode) return;
+
             var searchResultsURL = "<?php echo $this->getTsearchUrl(); ?>";
             var alignToSelector = "<?php echo $this->getTagalysConfig('suggestions_align_to_selector'); ?>";
             if(!alignToSelector) {
@@ -23,7 +26,6 @@
             })
 
             // Temp fix for form submit
-            var searchInputNode = document.querySelector(selector);
             var nearestFormNode = searchInputNode.closest("form");
             if(nearestFormNode) {
                 nearestFormNode.setAttribute("action", searchResultsURL);
