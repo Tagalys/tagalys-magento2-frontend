@@ -5,23 +5,30 @@
         onTagalysReady(function () {
             var selector = "<?php echo $this->getTagalysConfig('search_box_selector') ?>";
             var searchResultsURL = "<?php echo $this->getTsearchUrl(); ?>";
-            // console.log("results: " + searchResultsURL);
+            var alignToSelector = "<?php echo $this->getTagalysConfig('suggestions_align_to_selector'); ?>";
+            if(!alignToSelector) {
+                alignToSelector = false;
+            }
+
             Tagalys.UIWidgets.SearchSuggestions.init(selector, {
                 searchResultsURL: searchResultsURL,
-                // templates: {
-                //     widget: {
-                //         options: {
-                //             inheritAlignmentElementWidth: false
-                //         }
-                //     }
-                // }
+                templates: {
+                    widget: {
+                        options: {
+                            alignToSelector: alignToSelector,
+                            // inheritAlignmentElementWidth: false
+                        }
+                    }
+                }
             })
+
+            // Temp fix for form submit
+            var searchInputNode = document.querySelector(selector);
+            var nearestFormNode = searchInputNode.closest("form");
+            if(nearestFormNode) {
+                nearestFormNode.setAttribute("action", searchResultsURL);
+            }
         });
 
     </script>
-    <style type="text/css">
-        #tagalys-namespace .search-suggestions {
-            z-index: 1000;
-        }
-    </style>
 <?php endif; ?>

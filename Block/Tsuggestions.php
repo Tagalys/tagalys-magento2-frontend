@@ -50,4 +50,8 @@ class Tsuggestions extends \Magento\Framework\View\Element\Template
     public function getTagalysConfig($path, $json_decode = false) {
       return $this->tagalysConfiguration->getConfig($path, $json_decode);
     }
+
+    public function getAlignToSelector() {
+        return $this->tagalysConfiguration->getConfig('suggestions_align_to_selector');
+    }
 }

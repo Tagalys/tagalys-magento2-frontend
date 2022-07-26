@@ -126,13 +126,13 @@ class Frontend extends Generic
             'tabindex' => 1
         ));
 
-        $searchFieldset->addField('suggestions_align_to_parent_selector', 'text', array(
-            'name'      => 'suggestions_align_to_parent_selector',
-            'label'     => __('Align suggestions to search box parent'),
-            'value'  => $this->tagalysConfiguration->getConfig("suggestions_align_to_parent_selector"),
+        $searchFieldset->addField('suggestions_align_to_selector', 'text', array(
+            'name'      => 'suggestions_align_to_selector',
+            'label'     => __('Align suggestions popup to selector'),
+            'value'  => $this->tagalysConfiguration->getConfig("suggestions_align_to_selector"),
             'required'  => false,
             'style'   => "width:100%",
-            'after_element_html' => '<small>If you want to align the search suggestions popup under a parent of the search box instead of the search box itself, specify the selector here.<br>This can be any jQuery selector.<br>Eg: #search-and-icon-container</small>',
+            'after_element_html' => '<small>If you want to align the search suggestions popup under a different element instead of the search box itself, specify the selector here.<br>Eg: #search-and-icon-container</small>',
             'tabindex' => 1
         ));
 
@@ -152,6 +152,12 @@ class Frontend extends Generic
             'categories_fieldset',
             ['legend' => __('Categories'), 'collapsable' => $this->getRequest()->has('popup')]
         );
+
+        $message = "The following options depend on the Tagalys JS file being loaded correctly. Make sure to provide a valid link in 'Stores > Settings > Configuration > Tagalys > Front-end JavaScript > General configuration > JavaScript file URL'";
+        $categoriesFieldset->addField('note_on_js_file_hosting', 'note', array(
+            'label' => __(''),
+            'text' => '<div class="tagalys-note">'.$message.'</div>'
+        ));
 
         $storesForJsRendering = $this->tagalysConfiguration->getConfig('stores_for_category_js_rendering', true);
         $availableStoresForTagalys = array_filter($allWebsiteStores, function($storeData) use($storesForTagalys) {
