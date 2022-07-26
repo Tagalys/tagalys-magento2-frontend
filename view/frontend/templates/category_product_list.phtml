@@ -1,0 +1,27 @@
+<?php
+/** @var \Tagalys\Sync\Block\CategoryProductList $block */
+?>
+
+<div class="product-listing-page-container">
+</div>
+
+<script type="text/javascript">
+    onTagalysReady(function () {
+        selector = ".product-listing-page-container"
+        Tagalys.UIWidgets.ProductListingPage.init(selector, {
+            params: {
+                product_listing_page_id: <?php echo $this->getCategoryId() ?>,
+            },
+            templates: {
+                header: {
+                    render: function (html) { return null; }
+                }
+            }
+        });
+    })
+</script>
+<style type="text/css">
+    #tagalys-namespace.tagalys-namespace .plp .filters {
+        margin-left: 0;
+    }
+</style>

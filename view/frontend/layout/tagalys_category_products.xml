@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="columns" remove="true"/>
+    <referenceContainer name="main.content">
+        <container name="tagalys_category_override" htmlTag="div" htmlClass="tagalys-override">
+            <block class="Tagalys\Frontend\Block\CategoryProductList" name="category_product_list" template="category_product_list.phtml"/>
+        </container>
+    </referenceContainer>
+</page>
