@@ -40,11 +40,10 @@ class HideMagentoProductList implements \Magento\Framework\Event\ObserverInterfa
         if(!$this->tagalysConfiguration->isJsRenderingEnabledForCategory($storeId, $this->category)) {
             return;
         }
-        // store enabled and js rendering on?
-        // category is powered by tagalys?
-        // Not a CMS page?
-        // Tagalys health OK?
-        // else return
+
+        if(!$this->tagalysConfiguration->isTagalysHealthy($module)) {
+            return;
+        }
 
         // add layout to override category product list
         $observer->getLayout()->getUpdate()->addHandle('tagalys_category_products');
