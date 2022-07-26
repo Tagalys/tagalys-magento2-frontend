@@ -1,54 +1,27 @@
 <?php if ($this->tSearchEnabled()): ?>
-    <?php
-        $currency = $this->getCurrentCurrency();
-        $apiCredentials = $this->apiCredentials();
-    ?>
     <script>
         document.getElementsByTagName('body')[0].classList.add('tagalys-search-enabled');
-        require(['jquery', 'jquery/ui'], function(jQuery){
-            try {
-                jQuery(document).on('tagalys:ready', function() {
-                    jQuery.fn.tagalys_search_suggestions.search_link = function( q, qf, qin ) {
-                        var tagalys_search_base_url = "<?php echo $this->getTsearchUrl(); ?>?q=";
-                        if (typeof(qf) == 'undefined' || jQuery.isEmptyObject(qf)) {
-                            return (tagalys_search_base_url + encodeURIComponent(q));
-                        } else {
-                            str = Object.keys(qf).map(function(key){
-                                return  encodeURIComponent(key) + "-"+ encodeURIComponent(qf[key]);
-                            }).join('~');
-                            qf_param = encodeURIComponent("qf") + '=' + str;
 
-                            return tagalys_search_base_url.concat(encodeURIComponent(q) +"&"+qf_param);
-                        }
-                    };
-                    jQuery.fn.tagalys_search_suggestions.popular_searches  = function() {
-                        <?php
-                            try {
-                                $popularSearches = $this->getTagalysConfig('store:' . $this->getCurrentStoreId() . ':popular_searches');
-                                if ($popularSearches) {
-                                    echo 'return ' . $popularSearches . ';';
-                                } else {
-                                    echo 'return [];';
-                                }
-                            } catch (\Exception $e) {
-                                echo 'return [];';
-                            }
-                        ?>
-                    };
-                    jQuery('<?php echo $this->getTagalysConfig('search_box_selector') ?>').tagalys_search_suggestions({
-                        currency: {
-                            label: "<?php echo $currency['label']; ?>",
-                            exchange_rate: "<?php echo  $currency['exchange_rate']; ?>",
-                            fractional_digits:"<?php echo  $currency['fractional_digits']; ?>"
-                        },
-                        track: 'asynchronous',
-                        align_to_parent: '<?php echo $this->getTagalysConfig('suggestions_align_to_parent_selector') ?>'
-                    });
-                });
-            }
-            catch(err) {
-
-            }
+        onTagalysReady(function () {
+            var selector = "<?php echo $this->getTagalysConfig('search_box_selector') ?>";
+            var searchResultsURL = "<?php echo $this->getTsearchUrl(); ?>";
+            // console.log("results: " + searchResultsURL);
+            Tagalys.UIWidgets.SearchSuggestions.init(selector, {
+                searchResultsURL: searchResultsURL,
+                // templates: {
+                //     widget: {
+                //         options: {
+                //             inheritAlignmentElementWidth: false
+                //         }
+                //     }
+                // }
+            })
         });
+
     </script>
+    <style type="text/css">
+        #tagalys-namespace .search-suggestions {
+            z-index: 1000;
+        }
+    </style>
 <?php endif; ?>

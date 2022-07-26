@@ -1,11 +1,9 @@
 <div class="tagalys-namespace" id="tagalys-namespace">
-  
+
 </div>
 
 <script type="text/javascript">
-    require(['jquery'],function(jQuery){
-        jQuery(document).on('tagalys:ready', function() {
-            jQuery('#tagalys-namespace').tagalys_search_results();
-        });
-    });
+    onTagalysReady(function () {
+        Tagalys.UIWidgets.SearchResults.init("#tagalys-namespace", {})
+    })
 </script>
